@@ -115,13 +115,17 @@ public class GraphicsDisplay extends JPanel {
 
     protected void paintMarkers(Graphics2D canvas) {
         canvas.setStroke(markerStroke);
-        canvas.setColor(Color.RED);
-        canvas.setPaint(Color.RED);
         for (Double[] point : graphicsData) {
-            Ellipse2D.Double marker = new Ellipse2D.Double();
+            GeneralPath marker = new GeneralPath();
+            int d = 11;
             Point2D.Double center = xyToPoint(point[0], point[1]);
-            Point2D.Double corner = shiftPoint(center, 3, 3);
-            marker.setFrameFromCenter(center, corner);
+
+            marker.moveTo(center.x + d / 2, center.y + d / 2);
+            marker.lineTo(center.x - d / 2, center.y + d / 2);
+            marker.lineTo(center.x, center.y - d / 2);
+            marker.closePath();
+            canvas.setColor(Color.RED);
+                canvas.setColor(Color.RED);
             canvas.draw(marker);
             canvas.fill(marker);
         }
