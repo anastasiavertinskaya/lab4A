@@ -124,13 +124,29 @@ public class GraphicsDisplay extends JPanel {
             marker.lineTo(center.x - d / 2, center.y + d / 2);
             marker.lineTo(center.x, center.y - d / 2);
             marker.closePath();
-            canvas.setColor(Color.RED);
+            if(checkMarker(point[1]) == true) {
+                canvas.setColor(Color.MAGENTA);
+                canvas.setPaint(Color.MAGENTA);
+            } else {
                 canvas.setColor(Color.RED);
+                canvas.setColor(Color.RED);
+            }
             canvas.draw(marker);
             canvas.fill(marker);
         }
     }
 
+    protected boolean checkMarker(double y) {
+        //раскраска маркеров по условию
+        int Yint = (int) y;
+        boolean flag = false;
+        if ((y <= Yint + 0.1) && (y >= Yint - 0.1))
+            flag = true;
+        else
+            flag = false;
+
+        return flag;
+    }
     protected void paintAxis(Graphics2D canvas) {
         canvas.setStroke(axisStroke);
         canvas.setColor(Color.BLACK);
