@@ -75,7 +75,7 @@ protected void openGraphics(File selectedFile) {
         DataInputStream in = new DataInputStream(new
         FileInputStream(selectedFile));
         Double[][] graphicsData = new
-        Double[in.available()/(Double.SIZE/8)/2][];)
+        Double[in.available()/(Double.SIZE/8)/2][];
         int i = 0;
         while (in.available()>0) {
         Double x = in.readDouble();
